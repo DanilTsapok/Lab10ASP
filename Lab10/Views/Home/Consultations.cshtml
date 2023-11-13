@@ -1,0 +1,52 @@
+﻿
+@model ShowConsultationViewModel;
+
+<style>
+    body{
+        display: flex;
+        justify-content:center;
+        height: 100vh;
+        width: 100%;
+       
+        overflow: hidden;
+        align-items: center;
+        text-align: center;
+        color:  #fff;
+        background-image: url(https://images.unsplash.com/photo-1510070112810-d4e9a46d9e91?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
+    }
+    th, td{
+        color: #fff
+    }
+</style>
+<body>
+
+
+<table class="table">
+    <h1>Consultation</h1>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Date Consultation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var consultation in Model.Consultations)
+        {
+            <tr>
+                <td>@consultation.Id</td>
+                <td>@consultation.Name</td>
+                <td>@consultation.Surname</td>
+                <td>@consultation.Email</td>
+                <td>@consultation.Subject</td>
+                <td>@consultation.DateConsultation.ToString("dd.MM.yyyy")</td>
+            </tr>
+        }
+    </tbody>
+        
+</table>
+
+</body>

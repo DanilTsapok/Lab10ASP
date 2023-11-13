@@ -1,0 +1,95 @@
+﻿@model Consultation
+
+@{
+
+    ViewData["Title"] = "Home Page";
+}
+
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<form method="post" asp-action="CreateConsultation" asp-controller="Home">
+    <style>
+        .registration{
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            flex-direction:column;
+            width: 100%;
+            height: 100vh;
+            overflow:hidden;
+            gap: 10px;
+            background-image: url(https://images.unsplash.com/photo-1510070112810-d4e9a46d9e91?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
+        }
+        label{
+            color: #fff;
+        }
+        h1{
+            color: #fff
+        }
+        
+        .item{
+            display:flex;
+            flex-direction: column;
+            width:250px;
+        }
+        .form-control{
+            background-color: transparent;
+            color: #fff
+        }
+
+        .form-control:focus {
+            background-color: transparent
+        }
+
+            .form-control::placeholder{
+                color: #fff
+            }
+
+        .form-select{
+            background-color: transparent
+
+        }
+
+            
+    </style>
+    <div class="registration">
+        
+        <h1>Registration</h1>
+            <div class="item">
+                <label asp-for="Name">Name:</label>
+            <input asp-for="Name" name="Name" type="text" placeholder="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        <div class="item">
+                <label asp-for="Surname">Surname:</label>
+            <input asp-for="Surname" name="Surname" type="text" placeholder="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div >
+        <div class="item">
+                <label asp-for ="Email">Email</label>
+            <input asp-for="Email" name="Email" type="text" placeholder="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        <div class="item">
+                <label asp-for="DateConsultation">Дата консультації</label>
+            <input type="date" asp-for="DateConsultation"  class="form-control" />
+            <span asp-validation-for="DateConsultation" class="text-danger"></span>
+            </div>
+        <div class="item">
+                <label asp-for="Subject">Предмет</label>
+                <select asp-for="Subject" asp-items="ViewBag.Subjects" class="form-select" aria-label="Default select example"f>
+                    <option value="">Виберіть предмет</option>
+                </select>
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+        <button type="submit" asp-action="ShowConsultations" class="btn btn-primary">Консультації</button>
+        <button type="submit"  class="btn btn-primary">Забронювати</button>
+    </div>
+
+
+   
+</form>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>
