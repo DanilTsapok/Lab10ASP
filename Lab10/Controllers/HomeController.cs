@@ -26,11 +26,10 @@ namespace Lab10.Controllers
                 if (consultation.Subject == "Основи" && consultation.DateConsultation.DayOfWeek == DayOfWeek.Monday)
                 {
                     ViewBag.Subject = new SelectList(subjects);
-                    ModelState.AddModelError("DateConsultation", "Консультація  Основи Програмування не може проходити по понеділках.");
+                    ModelState.AddModelError("DateConsultation", "Консультація Основи Програмування не може проходити по понеділках.");
                     return View("Index",consultation);
                 }
                 consultation.Id = consultId;
-                Console.WriteLine($"{consultation.Id}, {consultation.Name}, {consultation.Email}, {consultation.DateConsultation}, {consultation.Subject}");
                 _consultations.Add(consultation); 
                 consultId++;
                 ModelState.Clear();
