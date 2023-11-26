@@ -1,22 +1,49 @@
-﻿using Lab10.Models;
+﻿using Lab10.Filters;
+using Lab10.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
 
+
 namespace Lab10.Controllers
 {
+    [LogFilter]
     public class HomeController : Controller
     {
-        static int consultId = 1;
+
+     
 
         private static readonly List<string> subjects = new List<string> { "JavaScript", "C#", "Java", "Python", "Основи" };
         private static readonly List<Consultation> _consultations = new ();
-        
+        private static readonly List<User> users = new();
+        static int consultId = 1;
+        static int _userId = 1;
         public IActionResult Index()
         {
             ViewBag.Subjects = new SelectList(subjects);
             return View();
             
+        }
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [UserFilter]
+        [HttpPost]
+    
+        public ActionResult Login(User user) {
+            if (ModelState.IsValid)
+            {
+                user.Id = _userId;
+                users.Add(user);
+                Response.Cookies.Append("userId", _userId.ToString());
+                _userId++;
+                return View("Index");
+            }
+            return View();
         }
         [HttpPost]
         public IActionResult CreateConsultation(Consultation consultation)
